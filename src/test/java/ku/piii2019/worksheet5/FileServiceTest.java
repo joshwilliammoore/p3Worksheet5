@@ -114,8 +114,8 @@ public class FileServiceTest {
 
 
         System.out.println("getAllMediaItems: begin by testing .equals and .hashcode...");
-        assertTrue(testEquals());
-        assertTrue(testHashCode());
+        assertTrue(MediaItemTest.testEquals());
+        assertTrue(MediaItemTest.testHashCode());
         
         Path currentWorkingFolder = Paths.get("").toAbsolutePath();
         String rootFolder = Workshop5TestHelper.TEST_SCRATCH_FOLDER;
@@ -145,8 +145,8 @@ public class FileServiceTest {
     public void testGetListToRemove() {
                 
         System.out.println("getListToRemove");
-        assertTrue(testEquals());
-        assertTrue(testHashCode());
+        assertTrue(MediaItemTest.testEquals());
+        assertTrue(MediaItemTest.testHashCode());
         FileService instance = new FileServiceImpl();
         String rootTestFolder = Paths.get(Workshop5TestHelper.TEST_SCRATCH_FOLDER)
                                      .toAbsolutePath()
@@ -180,8 +180,8 @@ public class FileServiceTest {
     @Test
     public void testRemoveFiles() {
         System.out.println("removeFiles");
-        assertTrue(testEquals());
-        assertTrue(testHashCode());
+        assertTrue(MediaItemTest.testEquals());
+        assertTrue(MediaItemTest.testHashCode());
         Set<MediaItem> listToRemove = null;
         String rootTestFolder = Paths.get(Workshop5TestHelper.TEST_SCRATCH_FOLDER)
                                      .toAbsolutePath()
@@ -203,46 +203,46 @@ public class FileServiceTest {
         assertTrue(Workshop5TestHelper.filesExist(allMediaItems));
         assertTrue(Workshop5TestHelper.filesDontExist(allDuplicates));
     }
-    @Test
-    boolean testEquals()
-    {
-        MediaItem foo = new MediaItem().setAbsolutePath("foo");
-        MediaItem bar = new MediaItem().setAbsolutePath("bar");
-        
-        if(foo.equals(bar)){
-            System.out.println("testEquals: foo does not equal bar!");
-            return false;
-        }
-        bar.setAbsolutePath("foo");
-        if(foo.equals(bar)==false){
-            System.out.println("testEquals: foo does now equal bar, so .equals() method should return true!");
-            return false;
-        }
-        return true;
-    }
-    @Test
-    boolean testHashCode()
-    {
-        MediaItem foo = new MediaItem().setAbsolutePath("foo");
-        MediaItem bar = new MediaItem().setAbsolutePath("bar");
-        
-        int fooHashCode = foo.hashCode();
-        int barHashCode = bar.hashCode();
-        System.out.println("testHashCode: foo and bar different, with hashCodes of " 
-        + fooHashCode + " and " + barHashCode );
-        
-        if(fooHashCode==barHashCode){
-            System.out.println("testHashCode: slightly surprising (but not actually incorrect) for these to have the same hashcode...");
-        }
-        bar.setAbsolutePath("foo");
-        fooHashCode = foo.hashCode();
-        barHashCode = bar.hashCode();
-        System.out.println("testHashCode: foo and bar same, with hashCodes of " 
-        + fooHashCode + " and " + barHashCode );
-        if(fooHashCode!=barHashCode){
-            System.out.println("testHashCode: foo and bar hashCodes must be the same...");
-            return false;
-        }
-        return true;
-    }
+//    @Test
+//    boolean testEquals()
+//    {
+//        MediaItem foo = new MediaItem().setAbsolutePath("foo");
+//        MediaItem bar = new MediaItem().setAbsolutePath("bar");
+//        
+//        if(foo.equals(bar)){
+//            System.out.println("testEquals: foo does not equal bar!");
+//            return false;
+//        }
+//        bar.setAbsolutePath("foo");
+//        if(foo.equals(bar)==false){
+//            System.out.println("testEquals: foo does now equal bar, so .equals() method should return true!");
+//            return false;
+//        }
+//        return true;
+//    }
+//    @Test
+//    boolean testHashCode()
+//    {
+//        MediaItem foo = new MediaItem().setAbsolutePath("foo");
+//        MediaItem bar = new MediaItem().setAbsolutePath("bar");
+//        
+//        int fooHashCode = foo.hashCode();
+//        int barHashCode = bar.hashCode();
+//        System.out.println("testHashCode: foo and bar different, with hashCodes of " 
+//        + fooHashCode + " and " + barHashCode );
+//        
+//        if(fooHashCode==barHashCode){
+//            System.out.println("testHashCode: slightly surprising (but not actually incorrect) for these to have the same hashcode...");
+//        }
+//        bar.setAbsolutePath("foo");
+//        fooHashCode = foo.hashCode();
+//        barHashCode = bar.hashCode();
+//        System.out.println("testHashCode: foo and bar same, with hashCodes of " 
+//        + fooHashCode + " and " + barHashCode );
+//        if(fooHashCode!=barHashCode){
+//            System.out.println("testHashCode: foo and bar hashCodes must be the same...");
+//            return false;
+//        }
+//        return true;
+//    }
 }
