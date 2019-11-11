@@ -34,7 +34,7 @@ public class MediaInfoSourceFromID3 implements MediaInfoSource {
                 ID3v2 album = myMp3File.getId3v2Tag();
                 MediaItem albumData = new MediaItem();
                 MediaItem a = albumData.setAlbum(album.toString());
-                Mp3File al = new Mp3File(a.getAbsolutePath());
+                Mp3File al = new Mp3File(albumData.getAbsolutePath());
                 al.getId3v2Tag().getAlbumArtist();
                 myMp3File.getId3v2Tag().getArtist();
                 myMp3File.getId3v2Tag().getTitle();
