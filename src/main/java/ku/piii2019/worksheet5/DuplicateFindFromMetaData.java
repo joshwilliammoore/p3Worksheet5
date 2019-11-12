@@ -5,6 +5,7 @@
  */
 package ku.piii2019.worksheet5;
 
+import com.mpatric.mp3agic.Mp3File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,9 @@ public class DuplicateFindFromMetaData implements DuplicateFinder{
 
     @Override
     public boolean areDuplicates(MediaItem m1, MediaItem m2) {
-        throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return !m1.getAbsolutePath().trim().equalsIgnoreCase(m2.getAbsolutePath().trim());
     }
 
     
