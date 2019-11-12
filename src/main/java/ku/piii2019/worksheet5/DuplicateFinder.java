@@ -24,6 +24,7 @@ public interface DuplicateFinder {
     
     default public Set<Set<MediaItem>>  getAllDuplicates (Set<MediaItem> allMediaItems){
         //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
+            
         Set<Set<MediaItem>> result = new LinkedHashSet<>();
         Set<MediaItem> dups1 = new LinkedHashSet<>();
         Set<MediaItem> dups2 = new LinkedHashSet<>();
@@ -32,9 +33,10 @@ public interface DuplicateFinder {
         Set<String> temp = new LinkedHashSet<>();
         
         for(MediaItem item : allMediaItems){
-            Path p = Paths.get(item.getAbsolutePath());
-            String filename = p.getFileName().toString();
-            
+            /*Path p = Paths.get(item.getAbsolutePath());
+            String filename = p.getFileName().toString();*/
+            String filename = item.getTitle();
+            System.out.println(filename);
             if(!uniqueFiles.contains(filename)){
                 uniqueFiles.add(filename);
             }else{
@@ -45,7 +47,7 @@ public interface DuplicateFinder {
         for(MediaItem item : allMediaItems){
             Path p = Paths.get(item.getAbsolutePath());
             String filename = p.getFileName().toString();
-            
+            //String filename = item.getTitle();
             if(dupeFiles.contains(filename)){
                 if(temp.isEmpty()){
                     temp.add(filename);
@@ -59,8 +61,8 @@ public interface DuplicateFinder {
             }
         }
         
-        result.add(dups2);
         result.add(dups1);
+        result.add(dups2);
         return result;
     }
     
@@ -71,12 +73,13 @@ public interface DuplicateFinder {
       //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
        Set<MediaItem> result = new HashSet<>();
       for(MediaItem i:inThese){	 
-        if(i.getTitle().trim().equalsIgnoreCase(toThis.getTitle().trim())&&
-            i.getAlbum().trim().equalsIgnoreCase(toThis.getAlbum().trim())&&
-            i.getArtist().trim().equalsIgnoreCase(toThis.getArtist().trim())){
+        if(i.getTitle().equalsIgnoreCase(toThis.getTitle().trim())&&
+            i.getAlbum().equalsIgnoreCase(toThis.getAlbum().trim())&&
+            i.getArtist().equalsIgnoreCase(toThis.getArtist().trim())){
             result.add(i);
         }   	  		     	     	  	
-      }	 	       	  		     	     	  	
+      }
+      System.out.println(result);
       return result;
     }
        
