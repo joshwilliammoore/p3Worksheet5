@@ -22,26 +22,31 @@ public class MediaInfoSourceFromID3 implements MediaInfoSource {
     public void addMediaInfo(MediaItem m) throws Exception {
              //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
              Mp3File myMp3File = new Mp3File(m.getAbsolutePath());
+             MediaItem mi = new MediaItem();
              
-             
-             
+             ID3v1 id3v1Tag;
              if(myMp3File.hasId3v1Tag()){
-                myMp3File.getId3v1Tag().getAlbum();
-                myMp3File.getId3v1Tag().getArtist();
-                myMp3File.getId3v1Tag().getTitle();
+                id3v1Tag = myMp3File.getId3v1Tag();
+                System.out.println(id3v1Tag.getAlbum());
+                m.setAlbum(id3v1Tag.getAlbum());
+                System.out.println(id3v1Tag.getArtist());
+                m.setArtist(id3v1Tag.getArtist());
+                System.out.println(id3v1Tag.getTitle());
+                m.setTitle(id3v1Tag.getTitle());
              }
+             
+             ID3v2 id3v2Tag;
              if(myMp3File.hasId3v2Tag()){
-                ID3v2 album = myMp3File.getId3v2Tag();
-                MediaItem albumData = new MediaItem();
-                MediaItem a = albumData.setAlbum(album.toString());
-                Mp3File al = new Mp3File(albumData.getAbsolutePath());
-                al.getId3v2Tag().getAlbumArtist();
-                myMp3File.getId3v2Tag().getArtist();
-                myMp3File.getId3v2Tag().getTitle();
-                System.out.println("Boo");
-             }else{
-                throw new UnsupportedOperationException("Not supported yet.");
+                id3v2Tag = myMp3File.getId3v2Tag();
+                System.out.println(myMp3File.getId3v2Tag().getAlbum());
+                m.setAlbum(id3v2Tag.getAlbum());
+                System.out.println(myMp3File.getId3v2Tag().getArtist());
+                m.setArtist(id3v2Tag.getArtist());
+                System.out.println(myMp3File.getId3v2Tag().getTitle());
+                m.setTitle(id3v2Tag.getTitle());
              }
+             
+             
              
    }
 
