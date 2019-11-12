@@ -123,7 +123,7 @@ String sep = File.separator;
     /**
      * Test of getAllDuplicates method, of class DuplicateFindFromFilename.
      */
-    @Ignore
+    //@Ignore
     @Test
     public void testGetAllDuplicates() {
         System.out.println("getAllDuplicates");
@@ -165,7 +165,7 @@ String sep = File.separator;
             assertEquals(expectedOutput,  actualOutput);
         }
     }
-    @Ignore
+    //@Ignore
     @Test
     public void testAreDuplicates() {
         System.out.println("areDuplicates");
