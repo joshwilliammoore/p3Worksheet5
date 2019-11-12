@@ -20,6 +20,8 @@ public class DuplicateFindFromFilename implements DuplicateFinder {
 
     @Override
     public boolean areDuplicates(MediaItem m1, MediaItem m2) {
-        throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return m1.getTitle().equals(m2.getTitle())&&!m1.getAbsolutePath().equals(m2.getAbsolutePath());
     }
 }
