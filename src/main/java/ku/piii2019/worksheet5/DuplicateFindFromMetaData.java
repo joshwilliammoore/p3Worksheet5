@@ -19,7 +19,18 @@ public class DuplicateFindFromMetaData implements DuplicateFinder{
     public boolean areDuplicates(MediaItem m1, MediaItem m2) {
         //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
         
-        return !m1.getAbsolutePath().trim().equalsIgnoreCase(m2.getAbsolutePath().trim());
+        try
+        {
+            if(m1.getTitle().trim().equalsIgnoreCase(m2.getTitle().trim())&&
+               m1.getAlbum().trim().equalsIgnoreCase(m2.getAlbum().trim())&&
+               m1.getArtist().trim().equalsIgnoreCase(m2.getArtist().trim())){
+                return true;
+            }
+        
+        }catch(NullPointerException npex) {
+            return false;
+        }
+        return false;
     }
 
     
