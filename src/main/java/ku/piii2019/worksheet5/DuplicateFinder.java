@@ -27,61 +27,14 @@ public interface DuplicateFinder {
     default public Set<Set<MediaItem>>  getAllDuplicates (Set<MediaItem> allMediaItems){
         //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
         Set<Set<MediaItem>> result = new LinkedHashSet<>();
-        Set<MediaItem> dups1 = new LinkedHashSet<>();
-        Set<MediaItem> dups2 = new LinkedHashSet<>();
-        Set<String> uniqueFiles = new LinkedHashSet<>();
-        Set<String> dupeFiles = new LinkedHashSet<>();
-        Set<String> temp = new LinkedHashSet<>();
-        
-        
-        
-        //DuplicateFinder instance = new DuplicateFinder();
-        //System.out.println(instance.getClass().getName());
         
             for(MediaItem item : allMediaItems){
-                Path p;
-                String filename;
                 Set<MediaItem> dupesToThis = this.getDuplicatesToThis(allMediaItems, item);
-                //if(dupesToThis){
-                    p = Paths.get(item.getAbsolutePath());
-                    filename = p.getFileName().toString();
-                //}else{
-                    //filename = item.getTitle();
-                //}
-                System.out.println(filename);
-                if(!uniqueFiles.contains(filename)){
-                    uniqueFiles.add(filename);
-                }else{
-                    dupeFiles.add(filename);
+                if(!dupesToThis.isEmpty()){
+                    dupesToThis.add(item);
+                    result.add(dupesToThis);
                 }
             }
-            
-            for(MediaItem item : allMediaItems){
-                Path p;
-                String filename;
-                //if(item.getClass().isInstance(DuplicateFindFromMetaData.class)){
-                    p = Paths.get(item.getAbsolutePath());
-                    filename = p.getFileName().toString();
-                //}else{
-                    //filename = item.getTitle();
-                //}
-                if(dupeFiles.contains(filename)){
-                    if(temp.isEmpty()){
-                        temp.add(filename);
-                        dups1.add(item);
-                    }
-                    if(!temp.contains(filename)){
-                        dups2.add(item);
-                    }else{
-                        dups1.add(item);
-                    }
-                }
-                
-            }
-            
-            
-            result.add(dups1);
-            result.add(dups2);
         
         return result;
     }
