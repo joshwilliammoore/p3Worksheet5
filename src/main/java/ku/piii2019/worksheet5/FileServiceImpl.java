@@ -81,7 +81,7 @@ public class FileServiceImpl implements FileService {
         * @param attrs
         * @return
         */
-        String rootFolder = "tmp-music-files";
+        String rootFolder = "test_folders";
         Path p = Paths.get(rootFolder);
         
             if(!p.isAbsolute()){
