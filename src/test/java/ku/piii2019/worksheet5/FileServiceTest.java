@@ -108,7 +108,7 @@ public class FileServiceTest {
     /**
      * Test of getAllMediaItems method, of class FileService.
      */
-    @Ignore    
+    //@Ignore    
     @Test
     public void testGetAllMediaItems() {
 
@@ -140,7 +140,7 @@ public class FileServiceTest {
     /**
      * Test of getListToRemove method, of class FileService.
      */
-    @Ignore
+    //@Ignore
     @Test
     public void testGetListToRemove() {
                 
@@ -176,7 +176,7 @@ public class FileServiceTest {
     /**
      * Test of removeFiles method, of class FileService.
      */
-    @Ignore    
+    //@Ignore    
     @Test
     public void testRemoveFiles() {
         System.out.println("removeFiles");
