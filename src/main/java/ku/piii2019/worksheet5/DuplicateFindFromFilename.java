@@ -16,16 +16,14 @@ import java.util.Set;
  * @author James
  */
 public class DuplicateFindFromFilename implements DuplicateFinder {
-    private DuplicateFindFromFilename instance;
 
     @Override
     public boolean areDuplicates(MediaItem m1, MediaItem m2) {
         //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
-        DuplicateFindFromFilename instance = new DuplicateFindFromFilename();
-        return m1.getTitle().equals(m2.getTitle())&&!m1.getAbsolutePath().equals(m2.getAbsolutePath());
+
+        Path p1 = Paths.get(m1.getAbsolutePath());
+        Path p2 = Paths.get(m2.getAbsolutePath());
+        return p1.getFileName().equals(p2.getFileName());
     }
     
-    public DuplicateFindFromFilename getInstance(){
-        return instance;
-    }
 }
