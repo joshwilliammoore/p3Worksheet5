@@ -41,7 +41,7 @@ public interface DuplicateFinder {
             for(MediaItem item : allMediaItems){
                 Path p;
                 String filename;
-                Set<MediaItem> dupesToThis = this.getDuplicatesToThis(allMediaItems, i);
+                Set<MediaItem> dupesToThis = this.getDuplicatesToThis(allMediaItems, item);
                 //if(dupesToThis){
                     p = Paths.get(item.getAbsolutePath());
                     filename = p.getFileName().toString();
