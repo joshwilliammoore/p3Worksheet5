@@ -22,7 +22,7 @@ public interface DuplicateFinder {
     // classes that implement DuplicateFinder must include a method for this:
     boolean areDuplicates  (MediaItem m1, MediaItem m2);
     
-    
+
     
     default public Set<Set<MediaItem>>  getAllDuplicates (Set<MediaItem> allMediaItems){
         //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
@@ -41,30 +41,30 @@ public interface DuplicateFinder {
             for(MediaItem item : allMediaItems){
                 Path p;
                 String filename;
-                
-                //if( instanceof DuplicateFindFromFilename){
+                Set<MediaItem> dupesToThis = this.getDuplicatesToThis(allMediaItems, i);
+                //if(dupesToThis){
                     p = Paths.get(item.getAbsolutePath());
                     filename = p.getFileName().toString();
                 //}else{
-                    filename = item.getTitle();
-                }
+                    //filename = item.getTitle();
+                //}
                 System.out.println(filename);
                 if(!uniqueFiles.contains(filename)){
                     uniqueFiles.add(filename);
                 }else{
                     dupeFiles.add(filename);
                 }
-            //}
+            }
             
             for(MediaItem item : allMediaItems){
                 Path p;
                 String filename;
-                if(item.getClass().isInstance(DuplicateFindFromMetaData.class)){
+                //if(item.getClass().isInstance(DuplicateFindFromMetaData.class)){
                     p = Paths.get(item.getAbsolutePath());
                     filename = p.getFileName().toString();
-                }else{
-                    filename = item.getTitle();
-                }
+                //}else{
+                    //filename = item.getTitle();
+                //}
                 if(dupeFiles.contains(filename)){
                     if(temp.isEmpty()){
                         temp.add(filename);
@@ -90,16 +90,13 @@ public interface DuplicateFinder {
     
     default public Set<MediaItem> getDuplicatesToThis  (Set<MediaItem> inThese, 
                                                   MediaItem toThis) {
-      //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates.
-       Set<MediaItem> result = new HashSet<>();
+      //throw new UnsupportedOperationException("Not written yet."); //To change body of generated methods, choose Tools | Templates. 
+      Set<MediaItem> result = new HashSet<>();
       for(MediaItem i:inThese){	 
-        if(i.getTitle().equalsIgnoreCase(toThis.getTitle().trim())&&
-            i.getAlbum().equalsIgnoreCase(toThis.getAlbum().trim())&&
-            i.getArtist().equalsIgnoreCase(toThis.getArtist().trim())){
+        if(i != toThis && this.areDuplicates(toThis, i)){
             result.add(i);
         }   	  		     	     	  	
       }
-      System.out.println(result);
       return result;
     }
        
