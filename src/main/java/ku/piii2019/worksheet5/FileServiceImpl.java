@@ -75,46 +75,17 @@ public class FileServiceImpl implements FileService {
     @Override
     public boolean removeFiles(Set<MediaItem> listToRemove) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        /**
-        *
-        * @param file
-        * @param attrs
-        * @return
-        */
-        String rootFolder = "test_folders";
-        Path p = Paths.get(rootFolder);
         
-            if(!p.isAbsolute()){
-                Path currentWorkingFolder = Paths.get("").toAbsolutePath();
-                rootFolder = Paths.get(currentWorkingFolder.toString(), rootFolder).toString();
-            }
-        
-        SimpleFileVisitor m = new SimpleFileVisitor<Path>(){
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException{
-                
-                
-                for(MediaItem item : listToRemove){
-                    Path d = Paths.get(item.getAbsolutePath());
-                    if(file.equals(d)){
-                        Files.delete(file);
-                        System.out.println(file.getFileName());
-                    }
-                }
-                return FileVisitResult.CONTINUE;
-                
-                
-            }   
-        };
-        
+        for(MediaItem m:listToRemove){
         try{
-            Files.walkFileTree(Paths.get(rootFolder), m);
+            Path p = Paths.get(m.getAbsolutePath());
+            Files.delete(p);
             
         }catch (IOException ex){
             ex.printStackTrace();
             return false;
         }
-        
+        }
         return true;
     }
 
